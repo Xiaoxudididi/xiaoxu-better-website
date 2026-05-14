@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能营养规划师</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🍎</span>
+                <h1>智能营养规划师</h1>
+            </div>
+            <p class="tagline">根据您的身体数据，为您定制专属饮食计划</p>
+        </header>
+
+        <section id="input-section" class="section">
+            <h2>输入您的个人信息</h2>
+            <form id="nutrition-form" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">年龄</label>
+                        <input type="number" id="age" min="18" max="100" placeholder="请输入年龄">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">性别</label>
+                        <select id="gender">
+                            <option value="">请选择</option>
+                            <option value="male">男</option>
+                            <option value="female">女</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="height">身高 (cm)</label>
+                        <input type="number" id="height" min="100" max="250" placeholder="请输入身高">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">体重 (kg)</label>
+                        <input type="number" id="weight" min="30" max="200" placeholder="请输入体重">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="activity">活动水平</label>
+                        <select id="activity">
+                            <option value="">请选择</option>
+                            <option value="sedentary">久坐型</option>
+                            <option value="light">轻度活动</option>
+                            <option value="moderate">中度活动</option>
+                            <option value="active">高度活动</option>
+                            <option value="very_active">非常活跃</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal">健康目标</label>
+                        <select id="goal">
+                            <option value="">请选择</option>
+                            <option value="maintain">维持体重</option>
+                            <option value="lose">减脂</option>
+                            <option value="gain">增肌</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="preferences-section">
+                    <label class="preferences-label">饮食偏好</label>
+                    <div class="preferences-grid">
+                        <label class="preference-item">
+                            <input type="checkbox" class="preference-checkbox" value="vegan">
+                            <span>纯素食</span>
+                        </label>
+                        <label class="preference-item">
+                            <input type="checkbox" class="preference-checkbox" value="vegetarian">
+                            <span>素食</span>
+                        </label>
+                        <label class="preference-item">
+                            <input type="checkbox" class="preference-checkbox" value="low-fat">
+                            <span>低脂</span>
+                        </label>
+                        <label class="preference-item">
+                            <input type="checkbox" class="preference-checkbox" value="high-protein">
+                            <span>高蛋白</span>
+                        </label>
+                        <label class="preference-item">
+                            <input type="checkbox" class="preference-checkbox" value="seafood">
+                            <span>海鲜</span>
+                        </label>
+                        <label class="preference-item">
+                            <input type="checkbox" class="preference-checkbox" value="dairy">
+                            <span>乳制品</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="lifestyle-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cooking">烹饪方式</label>
+                            <select id="cooking">
+                                <option value="">请选择</option>
+                                <option value="home-cook">自己做饭</option>
+                                <option value="takeout">外卖/堂食</option>
+                                <option value="mixed">混合（一半做一半买）</option>
+                                <option value="canteen">食堂</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">所在地区</label>
+                            <select id="location">
+                                <option value="">请选择</option>
+                                <option value="city">一线城市</option>
+                                <option value="town">三四线城市/县城</option>
+                                <option value="rural">乡村/农村</option>
+                                <option value="campus">学校（校园食堂）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="complexity">食谱复杂度</label>
+                            <select id="complexity">
+                                <option value="">请选择</option>
+                                <option value="simple">简单（米饭、馒头等）</option>
+                                <option value="moderate">适中（杂粮、豆类等）</option>
+                                <option value="complex">丰富（藜麦、燕麦等）</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="days">生成天数</label>
+                            <select id="days">
+                                <option value="1">1天</option>
+                                <option value="3">3天</option>
+                                <option value="7">7天</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">生成饮食计划</button>
+            </form>
+        </section>
+
+        <section id="result-section" class="section hidden">
+            <div class="result-header">
+                <h2>您的专属饮食计划</h2>
+                <div class="action-buttons">
+                    <button id="back-btn" class="action-btn secondary">返回修改</button>
+                    <button id="regenerate-btn" class="action-btn">重新生成</button>
+                    <button id="share-btn" class="action-btn">分享计划</button>
+                </div>
+                <div class="stats-card">
+                    <div class="stat-item">
+                        <span class="stat-value" id="calories"></span>
+                        <span class="stat-label">每日热量需求</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="bmi"></span>
+                        <span class="stat-label">BMI指数</span>
+                        <span id="bmi-category" class="bmi-category"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="bmr"></span>
+                        <span class="stat-label">基础代谢率</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="single-day-section">
+                <div class="meal-plan">
+                    <div class="meal-card" id="breakfast">
+                        <div class="meal-icon">🌅</div>
+                        <h3>早餐</h3>
+                        <div class="meal-content"></div>
+                        <div class="meal-nutrition">
+                            <span class="nutri-item">热量: <span class="cal"></span> kcal</span>
+                            <span class="nutri-item">蛋白质: <span class="protein"></span> g</span>
+                            <span class="nutri-item">碳水: <span class="carbs"></span> g</span>
+                            <span class="nutri-item">脂肪: <span class="fat"></span> g</span>
+                        </div>
+                    </div>
+
+                    <div class="meal-card" id="lunch">
+                        <div class="meal-icon">☀️</div>
+                        <h3>午餐</h3>
+                        <div class="meal-content"></div>
+                        <div class="meal-nutrition">
+                            <span class="nutri-item">热量: <span class="cal"></span> kcal</span>
+                            <span class="nutri-item">蛋白质: <span class="protein"></span> g</span>
+                            <span class="nutri-item">碳水: <span class="carbs"></span> g</span>
+                            <span class="nutri-item">脂肪: <span class="fat"></span> g</span>
+                        </div>
+                    </div>
+
+                    <div class="meal-card" id="dinner">
+                        <div class="meal-icon">🌙</div>
+                        <h3>晚餐</h3>
+                        <div class="meal-content"></div>
+                        <div class="meal-nutrition">
+                            <span class="nutri-item">热量: <span class="cal"></span> kcal</span>
+                            <span class="nutri-item">蛋白质: <span class="protein"></span> g</span>
+                            <span class="nutri-item">碳水: <span class="carbs"></span> g</span>
+                            <span class="nutri-item">脂肪: <span class="fat"></span> g</span>
+                        </div>
+                    </div>
+
+                    <div class="meal-card" id="snack">
+                        <div class="meal-icon">🍪</div>
+                        <h3>加餐</h3>
+                        <div class="meal-content"></div>
+                        <div class="meal-nutrition">
+                            <span class="nutri-item">热量: <span class="cal"></span> kcal</span>
+                            <span class="nutri-item">蛋白质: <span class="protein"></span> g</span>
+                            <span class="nutri-item">碳水: <span class="carbs"></span> g</span>
+                            <span class="nutri-item">脂肪: <span class="fat"></span> g</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section id="week-plan-section" class="section hidden">
+                <h2>📅 周饮食计划</h2>
+                <div id="week-plan-container"></div>
+            </section>
+
+            <div class="total-nutrition">
+                <h3>每日营养总览</h3>
+                <div class="nutrition-bar">
+                    <div class="bar-item">
+                        <div class="bar-label">蛋白质</div>
+                        <div class="bar-container">
+                            <div class="bar-fill protein-bar"></div>
+                        </div>
+                        <div class="bar-value" id="total-protein"></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">碳水化合物</div>
+                        <div class="bar-container">
+                            <div class="bar-fill carbs-bar"></div>
+                        </div>
+                        <div class="bar-value" id="total-carbs"></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">脂肪</div>
+                        <div class="bar-container">
+                            <div class="bar-fill fat-bar"></div>
+                        </div>
+                        <div class="bar-value" id="total-fat"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exercise-section" class="section hidden">
+            <h2>🏋️ 运动建议</h2>
+            <div class="exercise-content">
+                <div class="exercise-card">
+                    <h3>有氧运动</h3>
+                    <ul id="cardio-list"></ul>
+                </div>
+                <div class="exercise-card">
+                    <h3>力量训练</h3>
+                    <ul id="strength-list"></ul>
+                </div>
+                <div class="exercise-tips">
+                    <p id="exercise-tips"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="knowledge-section" class="section">
+            <h2>📚 营养知识</h2>
+            <div id="knowledge-container" class="knowledge-grid"></div>
+        </section>
+
+        <section id="history-section" class="section hidden">
+            <h2>📜 历史记录</h2>
+            <div id="history-container" class="history-list"></div>
+        </section>
+
+        <footer class="footer">
+            <p>基于中国居民膳食指南制定 | 仅供参考，请咨询专业营养师</p>
+        </footer>
+    </div>
+
+    <script src="js/nutrition.js"></script>
+</body>
+</html>
